@@ -12,6 +12,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 // screens
+import About from './screens/about';
 import Game from './screens/game';
 import Help from './screens/help';
 import Level from './screens/level';
@@ -27,6 +28,7 @@ const App: () => React$Node = () => {
         <Stack.Navigator
           initialRouteName="start"
           screenOptions={{headerShown: false}}>
+          <Stack.Screen name="about" component={About} />
           <Stack.Screen name="game" component={Game} />
           <Stack.Screen name="help" component={Help} />
           <Stack.Screen name="level" component={Level} />
