@@ -7,6 +7,18 @@ import {
   ImageBackground,
   Image,
 } from 'react-native';
+import TrackPlayer from 'react-native-track-player';
+
+// TrackPlayer.setupPlayer({}).then(async () => {});
+// TrackPlayer.add({
+//   id: 'bg_music_id',
+//   url: require('../assets/music/bg_music.mp3'),
+//   title: 'MatchIt',
+//   artist: 'Subho Basak',
+//   album: 'React Native',
+//   artwork: require('../assets/images/logo.png'),
+// });
+// TrackPlayer.play();
 
 const Start = ({navigation}) => {
   const [sound, setSound] = React.useState([
@@ -17,8 +29,10 @@ const Start = ({navigation}) => {
   const set_sound = () => {
     if (sound[0]) {
       setSound([false, require('../assets/images/no-sound.png')]);
+      // TrackPlayer.stop();
     } else {
       setSound([true, require('../assets/images/sound.png')]);
+      // TrackPlayer.play();
     }
   };
 

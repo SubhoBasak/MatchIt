@@ -6,7 +6,20 @@ import {
   ImageBackground,
 } from 'react-native';
 
-const Box = ({value, selected, setSelected}) => {
+const Box = ({
+  index,
+  value,
+  show,
+  setShowSet,
+  selected,
+  selectedIndex,
+  setSelected,
+  setSelectedIndex,
+}) => {
+  let show_set = show;
+  value = value[index];
+  show = show[index];
+
   const select_set_bg = () => {
     if (value === 0) {
       return (
@@ -95,12 +108,34 @@ const Box = ({value, selected, setSelected}) => {
     }
   };
 
+  const btn_pressed = () => {
+    if (show == 0) {
+      if (selected === -1) {
+        show_set[index] = 1;
+        setShowSet(show_set);
+        setSelected(value);
+        setSelectedIndex(index);
+      } else if (selected === value) {
+        show_set[index] = 1;
+        setShowSet(show_set);
+        setSelected(-1);
+        setSelectedIndex(-1);
+      } else {
+        show_set[index] = 0;
+        show_set[selectedIndex] = 0;
+        setShowSet(show_set);
+        setSelected(-1);
+        setSelectedIndex(-1);
+      }
+    }
+  };
+
   return (
-    <TouchableOpacity style={style.box_container}>
+    <TouchableOpacity style={style.box_container} onPress={btn_pressed}>
       <ImageBackground
         source={require('../assets/images/box.png')}
         style={style.box_background}>
-        {select_set_bg()}
+        {show ? select_set_bg() : <></>}
       </ImageBackground>
     </TouchableOpacity>
   );
@@ -110,6 +145,8 @@ const style = StyleSheet.create({
   box_container: {
     width: 50,
     height: 50,
+    marginRight: 5,
+    marginBottom: 5,
   },
   box_background: {
     width: '100%',

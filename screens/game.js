@@ -37,7 +37,7 @@ function set_game_matrix(set) {
   return game_matrix;
 }
 
-const Game = ({route}) => {
+const Game = ({route, navigation}) => {
   let game_matrix;
   let game_stage;
 
